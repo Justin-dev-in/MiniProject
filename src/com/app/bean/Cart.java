@@ -42,12 +42,17 @@ public class Cart extends HttpServlet {
 	    Book b=new Book();
 		b=UserDao.getBookById(bid);
 		float total_price=b.getPrice()*quant;
+		
 	  
 		pw.print("<table border=1 width=40% <tr><td>id</td> <td>name</td><td>author</td><td>price</td><td>genre</td><td>Quantity</td><td>Total price</td></tr><tr><td>"+b.getBook_id()+"</td><td>"+b.getBook_name()+"</td> <td>"+b.getAuthor()+"</td> <td>"+b.getPrice()+" <td>"+b.getGenre()+"</td><td>"+qty+"<td>"+total_price+"<td><a href='customerDetails.jsp'><input type='button' value='Purchase'></a></table>");
 	     
 	    HttpSession session= request.getSession();
 	    session.setAttribute("id",id);
 	    session.setAttribute("quantity",qty);
+	    long mob=(long) session.getAttribute("mobile");
+	    session.setAttribute("total",total_price);
+	    session.setAttribute("name",b.getBook_name());
+	    System.out.println(mob);
 	}
 
 	/**

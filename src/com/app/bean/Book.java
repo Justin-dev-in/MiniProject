@@ -3,15 +3,21 @@ package com.app.bean;
 
 import java.awt.image.BufferedImage;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.type.BlobType;
 
+import com.mysql.cj.jdbc.Blob;
+
 @Entity
-@Table(name="books")
+@Table(name="books100")
 public class Book {
 
 	@Id
@@ -25,6 +31,19 @@ public class Book {
 	float price;
 	@Column(name="genre")
 	String  genre;
+	@Lob
+	@Column(name="image",columnDefinition="mediumblob" )
+	String image;
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	@OneToOne(mappedBy="book" ,cascade=CascadeType.ALL)
+	OrderDetails orderDetails;
+	
 	public int getBook_id() {
 		return book_id;
 	}
@@ -58,9 +77,10 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [book_id=" + book_id + ", book_name=" + book_name + ", author=" + author + ", price=" + price
-				+ ", genre=" + genre + "]";
+				+ ", genre=" + genre + ", image=" + image + ", orderDetails=" + orderDetails + "]";
 	}
 	
+
 	
 	
 	

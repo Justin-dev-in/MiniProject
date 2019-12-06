@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
 
 <title>Book Store</title>
 <link rel="icon" href="image/fa.png" type="image/fa.png">
@@ -117,10 +116,10 @@ function myFunction() {
       <img src="image/fa.png" class="img-fluid">
       </div>
   	<a class="menulink" href="newIndex.jsp">HOME</a>
-	<a class="menulink" href="viewBook.jsp"> PRODUCT</a>
-	<a class="menulink" href="userRegistration.jsp"> SIGNUP</a>
+	<a class="menulink" href="product.jsp"> PRODUCT</a>
+	<a class="menulink" href="NewUser.jsp"> SIGNUP</a>
 	<a class="menulink" href="feedback.jsp"> FEEDBACK</a>
-	<a class="menulink" href="Logout">Logout</a>
+	
 	<form class="offset-2 form-inline my-2 my-lg-3">
      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-5 my-sm-0" type="submit">Search</button>&emsp;
@@ -133,44 +132,41 @@ function myFunction() {
 <div class="relative">
 
 </div>
-<body>
- 
+<pre></pre>
 <%@page import="com.app.bean.UserDao,com.app.bean.Book,java.util.*"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   
-<h1>Product List</h1> 
-  
+
 <%  
 
 List<Book> list=UserDao.getProduct();  
 request.setAttribute("list",list); 
 %>  
-   
- <table width="50%" border="1"> 
- 
-<div class="card">
 
+
+<div class="card">
+<form>
 <table border="0" align ="center" cellpadding="10" cellspacing="15" >
 
 
 <c:forEach items="${list}" var="u">  
-<form action="Cart?id=${u.getBook_id()}" method="post"> 
+<%-- <form action="Cart?id=${u.getBook_id()}" method="post">  --%>
 <tr>
 <td ><img src="data:image/jpg;base64,${u.getImage()}" width="100" height="100"/></td>
-
+<center><font size="4"></td><b>
 <td>${u.getBook_name()}</td><td>${u.getAuthor()}</td>  
 
-<td>${u.getPrice()}</td>
-<td>${u.getGenre()}</td>
-<td><input type="text"  name="quantity"  ></td>
+<td>Price:${u.getPrice()}</td>
+<td>Genre:${u.getGenre()}</b></font></center><br/>
 
- <td><input type="submit" value="addtocart"></td> 
+ <td><a href="deleteRecord.jsp?id=${u.getBook_id()}">Delete</a></td> 
 </tr>
-</form>
+
 </c:forEach>
 
 </table> 
 
-<a href="index.jsp">Logout</a>
+
+
 </body>
 </html>

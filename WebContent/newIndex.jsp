@@ -1,28 +1,6 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-<h1>Admin Login</h1>
-<form action="Admin1" method="post">
-<table>
-<tr>
-<td>Enter username:<input type="text" name="name"></td>
-<td>Enter password:<input type="password" name="password"></td>
-<td><input type="submit" value="login"></td>
-</tr>
-</table>
-</form>
-</body>
-</html> --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
@@ -57,7 +35,7 @@ div.forget
 }
 body
 {
-	background-image:url("image/");
+	background-image:url("image/bg1.jpg");
 	background-repeat:no-repeat;
 		
 	background-size:cover;
@@ -114,9 +92,60 @@ visibility: hidden;
 	margin-top: 100px;
 }
 </style>
+
 </head>
-<body>
-<script>
+<body> 
+
+<div id="demo" class="carousel slide " data-ride="carousel">
+<div class="col-sm-5 offset-1 col-md-6 col-md-offset-0">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="image/ca.jpg" alt="Los Angeles" width="900" height="300" class="img-fluid">
+    </div>
+    <div class="carousel-item ">
+      <img src="image/ca1.jpg" alt="Chicago" width="900" height="300" class="img-fluid">
+    </div>
+    <div class="carousel-item ">
+      <img src="image/ca2.jpg" alt="New York" width="900" height="300" class="img-fluid">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+  </div>
+  
+<div class="absolute ">
+<form name="user" action="Login" method="post">
+<br>
+<label for="Username">&emsp;<b>USERNAME</b></label>&nbsp;
+<input type="number" placeholder="Username" name="mobile" required><br><br>
+<label for="Password">&emsp;<b>PASSWORD</b></label>&nbsp;
+<input type="password" placeholder="Password" name="password" required><br><br>
+&emsp;&emsp;&emsp;<button id="button" type="submit" "alert-success" value="login" name="login" &emsp;>Login</button>
+&emsp;&emsp;&emsp;
+</form>
+&emsp;&emsp;&emsp;<button type="submit" value="forgot" ><a href="forgotpwd.jsp">Forget Password</a> 
+</button>
+<a href="userRegistration.jsp"><input type="button" value="New User" ></a><br><br>
+</div>
+ 
+</div>
+
+ <script>
 window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");
@@ -130,49 +159,27 @@ function myFunction() {
   }
 }
 
-
 </script>
+ 
 <div id="navbar" class="navbar  fixed-top">
 <div class="logo-image">
       <img src="image/fa.png" class="img-fluid">
       </div>
-  	<a class="menulink" href="newIndex.jsp"> Home</a>
-	<a class="menulink" href="viewBook.jsp"> Product</a>
-	<a class="menulink" href="userRegistration.jsp"> SignUp</a>
-	<a class="menulink" href="feedback.html"> Feedback</a>
+  	<a class="menulink" href="newIndex.jsp">HOME</a>
+	<a class="menulink" href="viewBook.jsp"> PRODUCT</a>
+	<a class="menulink" href="userRegistration.jsp"> SIGNUP</a>
+	<a class="menulink" href="feedback.jsp"> FEEDBACK</a>
 	
 	<form id="search" class="offset-2 form-inline my-2 my-lg-3">
      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-5 my-sm-0" type="submit">Search</button>&emsp;
-    </form> 
+    </form>   
+    <a class="menulink" href="Admin.jsp">ADMIN</a>
 </div>
-<form name="user" action="Admin1" method="get">
-<div class="container col-4" >
-<pre>
 
+<div class="relative">
 
-
-
-
-
-
-
-
-</pre>
-<h1>Admin Login</h1>
-
-<div class="form-group">
-<label for="Username">&emsp;<b>Username</b></label>
-<input type="text" placeholder="Username" name="name"  class="form-control" required>
-<br>
-<label for="Password">&emsp;<b>Password</b></label>&nbsp;
-<input type="password" placeholder="Password" name="password" class="form-control" required>
-<br>
 </div>
-<button id="button" type="submit" "alert-success" value="login" name="login" class="btn btn-primary offset-4"
->Login</button>
-</div>
-</div>
-</form>
+
 </body>
 </html>

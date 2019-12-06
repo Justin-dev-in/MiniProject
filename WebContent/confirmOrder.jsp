@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+
 
 <title>Book Store</title>
 <link rel="icon" href="image/fa.png" type="image/fa.png">
@@ -118,9 +119,9 @@ function myFunction() {
       </div>
   	<a class="menulink" href="newIndex.jsp">HOME</a>
 	<a class="menulink" href="viewBook.jsp"> PRODUCT</a>
-	<a class="menulink" href="userRegistration.jsp"> SIGNUP</a>
+	<a class="menulink" href="Logout">LOGOUT</a>
 	<a class="menulink" href="feedback.jsp"> FEEDBACK</a>
-	<a class="menulink" href="Logout">Logout</a>
+	
 	<form class="offset-2 form-inline my-2 my-lg-3">
      <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-5 my-sm-0" type="submit">Search</button>&emsp;
@@ -130,47 +131,74 @@ function myFunction() {
       <img src="image/bag.jpg" class="img-fluid" id="bag">
       </div>
 </div>
-<div class="relative">
 
-</div>
-<body>
- 
-<%@page import="com.app.bean.UserDao,com.app.bean.Book,java.util.*"%>  
+
+
+<%@page import="com.app.bean.*,java.util.*" %>
+<jsp:useBean id="u" class="com.app.bean.Book" ></jsp:useBean>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  
-<h1>Product List</h1> 
-  
-<%  
+<%
+String bid=(String)session.getAttribute("id");
+Book b=UserDao.getBookById(Integer.parseInt(bid));
+int book_id=b.getBook_id();
 
-List<Book> list=UserDao.getProduct();  
-request.setAttribute("list",list); 
-%>  
-   
- <table width="50%" border="1"> 
  
-<div class="card">
+  long mobile=(long)session.getAttribute("mobile");
+    OrderDao.getOrderByNumber(mobile);
+     
+     OrderDao.viewBookbyId(book_id);
+    
+      int order_id=(Integer)session.getAttribute("order_id");
+    /* List<Book> list=OrderDao.viewBookbyId(book_id); 
+     request.setAttribute("list",list);  */
+     /* List<OrderDetails> list1=OrderDao.getOrderByNumber(mobile);
+     request.setAttribute("list1",list1) */;
+     List<OrderDetails>order=OrderDao.getOrderByOid(order_id);
+     request.setAttribute("list",order);
+     
+        
+     
+%>
 
-<table border="0" align ="center" cellpadding="10" cellspacing="15" >
 
 
-<c:forEach items="${list}" var="u">  
-<form action="Cart?id=${u.getBook_id()}" method="post"> 
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order Summary</h1>
+<table  align="center" border="5">
 <tr>
-<td ><img src="data:image/jpg;base64,${u.getImage()}" width="100" height="100"/></td>
-
-<td>${u.getBook_name()}</td><td>${u.getAuthor()}</td>  
-
-<td>${u.getPrice()}</td>
-<td>${u.getGenre()}</td>
-<td><input type="text"  name="quantity"  ></td>
-
- <td><input type="submit" value="addtocart"></td> 
+<td> Customer name </td>
+<td> phone number </td>
+<td> address </td>
+<td> book name </td>
+<td> total amount</td>
+<td>Order date</td>
 </tr>
-</form>
+
+ <c:forEach items="${list}" var="u1"> 
+   
+<tr>
+<td >${u1.getCust_name()}</td>
+<td>${u1.getPhone_number()}</td>
+<td>${u1.getAddress()}</td>
+<td>${u1.getName()}</td>
+<td>${u1.getTotal()}</td>
+<td>${u1.getDate()}</td>
+
+</tr>
+<td><a href="cancelorder.jsp"><input type="button" value="cancel order"/></a></td>
 </c:forEach>
 
-</table> 
-
-<a href="index.jsp">Logout</a>
+</table>
+ 
 </body>
 </html>

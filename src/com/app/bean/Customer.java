@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="userDetails")
+@Table(name="userDetails1")
 public class Customer {
 	
 	@Id
 	@Column(name="mobile")
-    int mobile;
+    long mobile;
 	
 	@Column(name="password")
 	String password;
@@ -27,11 +27,11 @@ public class Customer {
 	@Column(name="pincode")
 	int pincode;
 
-	public int getMobile() {
+	public long getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
+	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
 

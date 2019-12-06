@@ -12,8 +12,12 @@
 <jsp:setProperty property="*" name="u"/>
 <%
     CustomerDao.addCustomer(u);
-     out.print("Record added");
+     out.print("user registred");
+
+     
 %>
 
+<jsp:include page="newIndex.jsp"/>
+<h3>Successfull Registration</h3>
 </body>
 </html>

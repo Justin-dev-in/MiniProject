@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
@@ -33,7 +34,7 @@ public class Login extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter pw=response.getWriter();
 		String mobile1=request.getParameter("mobile");
-		int mobile = Integer.parseInt(mobile1);
+		long mobile = Long.parseLong(mobile1);
 		String password=request.getParameter("password");
 	     Customer e=new   Customer();
 		e.setMobile(mobile);
@@ -51,13 +52,17 @@ public class Login extends HttpServlet {
 		if(ans==true)
 		{
 			pw.write("login successful ");
-			request.getRequestDispatcher("viewbook.jsp").include(request, response);
+			request.getRequestDispatcher("welcome.jsp").include(request, response);
 		}
 		else
 		{
 			pw.write("please enter correct username & password");
 			request.getRequestDispatcher("index.jsp").include(request, response);
 		}
+		
+		 HttpSession session= request.getSession();
+		    session.setAttribute("mobile",mobile);
+		   
 	}	
 	
 	

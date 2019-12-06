@@ -7,8 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>welcome</h1>
-<jsp:include page="viewBook.jsp"/>
-
+<%@page import="com.app.bean.*"%>  
+<jsp:useBean id="u" class="com.app.bean.Book"></jsp:useBean>  
+<jsp:setProperty property="*" name="u"/>  
+<%  
+String id=request.getParameter("id");
+int bid = Integer.parseInt(id);
+  System.out.println(u);
+  UserDao.deleteBook(bid);  
+response.sendRedirect("adminView.jsp");  
+%>  
 </body>
 </html>

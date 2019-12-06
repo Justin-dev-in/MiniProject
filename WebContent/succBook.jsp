@@ -12,9 +12,12 @@
 <jsp:useBean id="u" class="com.app.bean.Book" ></jsp:useBean>
 <jsp:setProperty property="*" name="u"/>
 <%
-    UserDao.addBook(u);
+    UserDao.saveBook(u);
      out.print("Record added");
+      response.sendRedirect("adminView.jsp"); 
 %>
+
+
 
 
 </body>

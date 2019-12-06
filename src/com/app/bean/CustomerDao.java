@@ -77,8 +77,8 @@ public final class CustomerDao {
 		public static boolean validate(Customer e) throws SQLException
 		{
 			Connection con=CustomerDao.getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from userdetails where mobile=? and password=?");
-			ps.setInt(1,e.getMobile());
+			PreparedStatement ps = con.prepareStatement("select * from userDetails1 where mobile=? and password=?");
+			ps.setLong(1,e.getMobile());
 			ps.setString(2,e.getPassword());
 			ResultSet rs=ps.executeQuery();
 			boolean status=rs.next();
@@ -88,5 +88,19 @@ public final class CustomerDao {
 		
 
 		
-		}
+		
+
+     public static boolean validateEmail(Customer e)throws SQLException
+     {
+    	 
+    	 Connection con=CustomerDao.getConnection();
+    	 PreparedStatement ps=con.prepareStatement("select * from userDetails1 where mobile=? and  email=?");
+    	 ps.setString(2,e.getEmail());
+    	 ps.setLong(1,e.getMobile());
+    	 ResultSet rs=ps.executeQuery();
+    	 boolean status=rs.next();
+    	 System.out.println(status);
+    	 return status;
+     }
+}  
 		
